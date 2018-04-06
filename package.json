@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
+    "fast-levenshtein": "^2.0.6",
     "puppeteer": "^1.2.0"
   }
 }
