@@ -7,12 +7,11 @@ const baseURL = 'http://localhost:3000/'
 //const baseURL ''
 
 scraper.targetScrape()
-  .then(data => {
-    return scraper.stringsParser(data)
-  })
+  .then(data => scraper.stringsParser(data))
   .then(products => {
-    console.log('its over?', products)
+    console.log(products)
     let body = { products }
     return axios.post(`${baseURL}products/add`, body)
   })
-  .catch(console.error)
+  .then(res => res)
+  .catch(err => next(err))
