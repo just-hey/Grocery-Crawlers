@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer')
+const currentWeekNumber = require('current-week-number')
 
-let targetScrape = async () => {
+const targetScrape = async () => {
   const browser = await puppeteer.launch({ headless: false })
   const page = await browser.newPage()
   await page.goto(`https://weeklyad.target.com/`)
@@ -45,18 +46,10 @@ const stringsParser = async (arr) => {
     // console.log(el)
     let image = el[0].slice(1, el[0].length-2)
     let name = el[1].slice(1, el[1].length-2).trim()
-    finalParsedObjs.push({ image, name, price: arr[i].price, store: 'Target' })
+    let week = currentWeekNumber()
+    finalParsedObjs.push({ image, name, price: arr[i].price, store: 'Target', week })
   })
   return finalParsedObjs
 }
-
-// targetScrape()
-//   .then(data => {
-//     return stringsParser(data)
-//   })
-//   .then(completed => {
-//     console.log('its over?', completed)
-//     return completed
-//   })
 
 module.exports={ targetScrape, stringsParser }
