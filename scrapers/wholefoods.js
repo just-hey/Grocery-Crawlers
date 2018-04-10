@@ -31,7 +31,7 @@ const wholefoodsScrape = async (zip) => {
         firstHalf = node.childNodes[7].childNodes[0].childNodes[0].childNodes[2].childNodes[0].innerText
         secondHalf = node.childNodes[7].childNodes[0].childNodes[0].childNodes[2].childNodes[2].innerText
       }
-      let image = imageStr.slice(12, -9)
+      let image = `http://${imageStr.slice(12, -9)}`
       let name = node.childNodes[3].innerText.slice(0, -1)
       let price = `Sale ${firstHalf} - ${secondHalf}`
       return { image, name, price, store: 'Whole Foods' }
