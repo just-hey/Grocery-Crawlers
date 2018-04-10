@@ -47,7 +47,8 @@ const stringsParser = async (arr) => {
     let image = el[0].slice(1, el[0].length-2)
     let name = el[1].slice(1, el[1].length-2).trim()
     let week = currentWeekNumber()
-    finalParsedObjs.push({ image, name, price: arr[i].price, store: 'Target', week })
+    let zip = 'local'
+    finalParsedObjs.push({ image, name, price: arr[i].price, store: 'Target', zip, week })
   })
   return finalParsedObjs
 }
