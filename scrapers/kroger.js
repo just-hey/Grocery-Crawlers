@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer')
 const currentWeekNumber = require('current-week-number')
 
+
 let krogerScrape = async (zip) => {
   const browser = await puppeteer.launch({ headless: true })
   const page = await browser.newPage()
