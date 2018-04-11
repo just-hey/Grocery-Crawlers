@@ -38,7 +38,7 @@ const wholefoodsScrape = async (zip) => {
     })
     return finalParsed
   })
-  return finalInfo
+  return formatter(finalInfo, zip)
   browser.close()
 }
 

@@ -23,27 +23,23 @@ const targetScrape = async () => {
     })
       return result
   })
-  return finalInfo
+  return stringsParser(finalInfo)
   browser.close()
 }
 
 const stringsParser = async (arr) => {
-  // console.log(arr)
   let firstCut = arr.map(el => el.text.split('src='))
-  // console.log(arr[0]);
   let onlyImgAndText = []
   firstCut.forEach(el => {
     onlyImgAndText.push(el[1])
   })
   let dividedImgAndText = []
   onlyImgAndText.forEach(el => {
-    // console.log(el);
     let temp = el.split('alt=')
     dividedImgAndText.push(el.split('alt='))
   })
   let finalParsedObjs = []
   dividedImgAndText.forEach((el, i) => {
-    // console.log(el)
     let image = el[0].slice(1, el[0].length-2)
     let name = el[1].slice(1, el[1].length-2).trim()
     let week = currentWeekNumber()
