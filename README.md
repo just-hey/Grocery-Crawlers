@@ -1,9 +1,10 @@
 # Grocery Crawlers
 
-These are a few scrapers that are being used for the project SaleFinder (a full stack React App that allows users to register and have weekly text messages sent to them about what products are on sale.  SaleFinder utilizes web scraping to pull data from the following:
-  -*Whole Foods Market* _(uses zip code)_
-  -*Target*
-  -*Kroger* _(uses zip code)_
+These are a few scrapers that are being used for my project SaleFinder (a full stack React App that allows users to register and have weekly text messages sent to them about what products are on sale).  
+SaleFinder utilizes web scraping to pull data from the following:
+  - *Whole Foods Market* _(uses zip code)_
+  - *Target*
+  - *Kroger* _(uses zip code)_
 
 ### Deployed here: (soon to come)
 #### Frontend GitHub: https://github.com/just-hey/SaleFinder-Client
