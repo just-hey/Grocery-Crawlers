@@ -1,13 +1,6 @@
-const axios = require('axios')
 const target = require('./scrapers/target')
 const wholefoods = require('./scrapers/wholefoods')
 const kroger = require('./scrapers/kroger')
-
-//notdeployed
-const baseURL = 'http://localhost:3000/'
-
-//deployed
-//const baseURL ''
 
 // target.targetScrape()
 //   .then(data => target.stringsParser(data))
@@ -18,18 +11,18 @@ const baseURL = 'http://localhost:3000/'
 //   .then(res => res)
 //   .catch(err => next(err))
 
-let zip = '98177'
-kroger.krogerScrape(zip)
-  .then(products => {
-    console.log(products.length)
-    let body = { products }
-    return axios.post(`${baseURL}products/add`, body)
-  })
-  .then(res => {
-    console.log('response', res)
-    return res
-  })
-  .catch(console.error)
+// let zip = '98177'
+// kroger.krogerScrape(zip)
+//   .then(products => {
+//     console.log(products.length)
+//     let body = { products }
+//     return axios.post(`${baseURL}products/add`, body)
+//   })
+//   .then(res => {
+//     console.log('response', res)
+//     return res
+//   })
+//   .catch(console.error)
 
 // let zip = '98177'
 // wholefoods.wholefoodsScrape(zip)
@@ -47,28 +40,21 @@ kroger.krogerScrape(zip)
 //     return err
 //   })
 
-
-
-
 const express = require('express')
 const cors = require('cors')
 const app = express()
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3002
 require('dotenv').config()
 
 app.use(cors({ exposedHeaders: 'Auth' }))
 app.disable('x-powered-by')
 app.use(morgan('dev'))
-app.use(bodyParser.json({ limit: '50mb' }))
+app.use(bodyParser.json())
 
-const processErrorMessage = require('./models/errors.model')
-
-const { krogerScraper, targetScraper, wholefoodsScraper } = require('./scrapers')
-app.use('/users', UsersRouter)
-app.use('/products', ProductsRouter)
-app.use('/carts', CartsRouter)
+const router = require('./routes/Crawlers')
+app.use('/scrape', router)
 
 app.use((req, res) => {
   const status = 404;

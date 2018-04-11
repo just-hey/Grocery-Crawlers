@@ -5,15 +5,22 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "crawl": "node main.js"
+    "crawl": "node app.js",
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "current-week-number": "^1.0.7",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
     "fast-levenshtein": "^2.0.6",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.17.3",
     "puppeteer": "^1.2.0"
   }
 }

@@ -1,17 +1,14 @@
-const { Cart, User, Product } = require('../models')
+const scrapers = require('../scrapers')
 
 class Controller {
   constructor() {}
 
-  static searchByUser(req, res, next) {
-    Cart.searchByUser(req.params.userid)
-      .then(cart => {
-        if (!cart) throw new Error('noCartFound')
-        return res.status(200).json({ cart })
-      })
-      .catch(err => next(err))
+  static scrapeStores(req, res, next) {
+    //scrape each store
+    console.log('scraping stores', req.params)
+    //respond
   }
 
 }
 
-module.exports = CartsController
+module.exports = Controller
