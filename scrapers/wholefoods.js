@@ -17,25 +17,35 @@ const wholefoodsScrape = async (zip) => {
     await page.click('#block-views-80946ef4b139b2cead1c5f9f9cb3d671 > div > div > div.view-content > div.views-row.views-row-1.views-row-odd.views-row-first > div.torn-pod-content > div.storefront-links > a:nth-child(2)')
     await page.waitForSelector('#quicktabs-tabpage-custom_quicktab_sales_coupons-0 > div.torn-pod-content > div > div.view-content')
     let finalInfo = await page.evaluate( async (zip) => {
-      let infoNodes = await document.querySelectorAll('#quicktabs-tabpage-custom_quicktab_sales_coupons-0 > div.torn-pod-content > div > div.view-content')
+      try {
+        let infoNodes = await document.querySelectorAll('#quicktabs-tabpage-custom_quicktab_sales_coupons-0 > div.torn-pod-content > div > div.view-content')
+      }
+      catch(error) {
+        console.log(error)
+      }
       let infoArray = Array.from(infoNodes[0].childNodes)
       let filtered = infoArray.filter((el, i) => {
         if (i % 2 === 0) return el
       })
-      let finalParsed = await filtered.map(node => {
-        let imageStr = node.childNodes[7].childNodes[0].childNodes[0].childNodes[1].innerHTML
-        let firstHalf
-        let secondHalf
-        if (!node.childNodes[7].childNodes[0].childNodes[0].childNodes[2].childNodes[0] || !node.childNodes[7].childNodes[0].childNodes[0].childNodes[2].childNodes[2]) {
-          return null
-        } else {
-          firstHalf = node.childNodes[7].childNodes[0].childNodes[0].childNodes[2].childNodes[0].innerText
-          secondHalf = node.childNodes[7].childNodes[0].childNodes[0].childNodes[2].childNodes[2].innerText
-        }
-        let image = `http://${imageStr.slice(12, -9)}`
-        let name = node.childNodes[3].innerText.slice(0, -1)
-        let price = `Sale ${firstHalf} - ${secondHalf}`
-        return { image, name, price, store: 'Whole Foods' }
+      try {
+        let finalParsed = await filtered.map(node => {
+          let imageStr = node.childNodes[7].childNodes[0].childNodes[0].childNodes[1].innerHTML
+          let firstHalf
+          let secondHalf
+          if (!node.childNodes[7].childNodes[0].childNodes[0].childNodes[2].childNodes[0] || !node.childNodes[7].childNodes[0].childNodes[0].childNodes[2].childNodes[2]) {
+            return null
+          } else {
+            firstHalf = node.childNodes[7].childNodes[0].childNodes[0].childNodes[2].childNodes[0].innerText
+            secondHalf = node.childNodes[7].childNodes[0].childNodes[0].childNodes[2].childNodes[2].innerText
+          }
+          let image = `http://${imageStr.slice(12, -9)}`
+          let name = node.childNodes[3].innerText.slice(0, -1)
+          let price = `Sale ${firstHalf} - ${secondHalf}`
+          return { image, name, price, store: 'Whole Foods' }
+        })
+      }
+      catch(error {
+        console.log(error);
       })
       return finalParsed
     })
