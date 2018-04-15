@@ -26,8 +26,13 @@ class Controller {
     //   console.log('final scraped product count === ', body.products.length)
     //   return axios.post(`${process.env.BASE_URL}products/add`, body)
     // })
+    .then(products => {
+      let body = {products}
+      return axios.post(`https://salefinder-server.herokuapp.com/products/add`, body)
+      // return axios.post(`${process.env.BASE_URL}products/add`, body)
+    })
     .then(response => {
-      console.log(response.data.message);
+      console.log('response',response);
       return response.data.message
     })
     .catch(console.error)
