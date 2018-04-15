@@ -62,7 +62,7 @@ const wholefoodsScrape = async (zip) => {
     browser.close()
   }
   catch(error) {
-    console.log('for us!',error)
+    console.log('whole foods complete fail error: ',error)
   }
 }
 
