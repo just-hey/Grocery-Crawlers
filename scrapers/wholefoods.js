@@ -44,7 +44,7 @@ const wholefoodsScrape = async (zip) => {
           return { image, name, price, store: 'Whole Foods' }
         })
       }
-      catch(error {
+      catch(error) {
         console.log(error);
       })
       return finalParsed
