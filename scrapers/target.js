@@ -20,11 +20,6 @@ const targetScrape = async () => {
       try {
         infoStringNodes = await document.querySelectorAll('.product--link')
         infoStringArr = Array.from(infoStringNodes)
-      }
-      catch (error) {
-        console.log(error)
-      }
-      try {
         infoStringArr = await infoStringArr.map((el) => {
           let price = el.childNodes[3].childNodes[1].innerText.trim()
           let text = el.childNodes[1].childNodes[1].outerHTML
@@ -34,7 +29,7 @@ const targetScrape = async () => {
       catch (error) {
         console.log(error)
       }
-      return result
+      return infoStringArr
     })
     return stringsParser(finalInfo)
     browser.close()
