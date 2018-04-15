@@ -9,11 +9,11 @@ class Controller {
     let { zip } = req.params
     let products = []
     return scrapers.wholefoodsScraper.wholefoodsScrape(zip)
-    .then(async (wholeFoodsData) => {
-      console.log('wholeFoods fired');
-      await wholeFoodsData.forEach(product => products.push(product))
-      return scrapers.targetScraper.targetScrape()
-    })
+    // .then(async (wholeFoodsData) => {
+    //   console.log('wholeFoods fired');
+    //   await wholeFoodsData.forEach(product => products.push(product))
+    //   return scrapers.targetScraper.targetScrape()
+    // })
     // .then(async (targetStoreData) => {
     //   console.log('target fired');
     //   await targetStoreData.forEach(product => products.push(product))
