@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer')
 const currentWeekNumber = require('current-week-number')
 
 const targetScrape = async () => {
-  const browser = await puppeteer.launch({ headless: true })
+  const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] })
   const page = await browser.newPage()
   await page.goto(`https://weeklyad.target.com/`)
   await page.waitFor('body > div.contentWrapper > main > div.ng-scope > div > section > div > div > div > section > div.ad-selector.desktop.ng-isolate-scope.single > div > div > div > div > div.content.col-xs-6 > div:nth-child(1) > div > div > p > button')

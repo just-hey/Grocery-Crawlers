@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer')
 const currentWeekNumber = require('current-week-number')
 
 const krogerScrape = async (zip) => {
-  const browser = await puppeteer.launch({ headless: true })
+  const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] })
   const page = await browser.newPage()
   await page.goto(`https://wklyads.fredmeyer.com/flyers/fredmeyer-weekly/grid_view/335022?chrome=broadsheet&locale=en-US&postal_code=${zip}&store_code=00013&type=2`)
   await page.waitFor(2000)
