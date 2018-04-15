@@ -14,18 +14,18 @@ class Controller {
       await wholeFoodsData.forEach(product => products.push(product))
       return scrapers.targetScraper.targetScrape()
     })
-    .then(async (targetStoreData) => {
-      console.log('target fired');
-      await targetStoreData.forEach(product => products.push(product))
-      return scrapers.krogerScraper.krogerScrape(zip)
-    })
-    .then(async (krogerStoreData) => {
-      console.log('kroger fired');
-      await krogerStoreData.forEach(product => products.push(product))
-      let body = { products }
-      console.log('final scraped product count === ', body.products.length)
-      return axios.post(`${process.env.BASE_URL}products/add`, body)
-    })
+    // .then(async (targetStoreData) => {
+    //   console.log('target fired');
+    //   await targetStoreData.forEach(product => products.push(product))
+    //   return scrapers.krogerScraper.krogerScrape(zip)
+    // })
+    // .then(async (krogerStoreData) => {
+    //   console.log('kroger fired');
+    //   await krogerStoreData.forEach(product => products.push(product))
+    //   let body = { products }
+    //   console.log('final scraped product count === ', body.products.length)
+    //   return axios.post(`${process.env.BASE_URL}products/add`, body)
+    // })
     .then(response => {
       console.log(response.data.message);
       return response.data.message
