@@ -17,7 +17,6 @@ const targetScrape = async () => {
     let finalInfo = await page.evaluate( async () => {
     let infoStringNodes
     let infoStringArr
-    let infoStringArr
       try {
         infoStringNodes = await document.querySelectorAll('.product--link')
         infoStringArr = Array.from(infoStringNodes)
