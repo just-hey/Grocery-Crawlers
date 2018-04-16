@@ -52,7 +52,7 @@ const scraperBots = async () => {
     })
 }
 
-// scraperBots()
+scraperBots()
 
 // function addZip(req, res, next) {
 //   let { zip } = req.params

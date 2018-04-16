@@ -27,4 +27,4 @@ function zipFetch() {
     .catch(console.error)
 }
 
-// zipFetch()
+zipFetch()
