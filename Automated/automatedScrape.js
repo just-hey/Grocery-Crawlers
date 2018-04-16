@@ -6,6 +6,7 @@ const dbPath = __dirname + '/zipcodes.json'
 const scrapers = require('../scrapers')
 
 const scraperBots = async () => {
+  console.log('scraperBots triggered');
   let zipCodeList = JSON.parse(fs.readFileSync(dbPath, format))
   console.log('zip list: ',zipCodeList)
   if (zipCodeList.length === 0) process.exit(0)
@@ -47,6 +48,6 @@ const scraperBots = async () => {
     })
 }
 
-// scraperBots()
+scraperBots()
 
-module.exports = scraperBots
+// module.exports = scraperBots
