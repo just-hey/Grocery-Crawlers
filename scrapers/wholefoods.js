@@ -29,6 +29,7 @@ const wholefoodsScrape = async (zip) => {
       }
       catch(error) {
         console.log(error)
+        browser.close()
       }
       let imageStr
       let firstHalf
@@ -54,7 +55,9 @@ const wholefoodsScrape = async (zip) => {
         })
       }
       catch(error) {
-        console.log(error);
+        console.log(error)
+        browser.close()
+
       }
       return finalParsed
     })
@@ -63,6 +66,8 @@ const wholefoodsScrape = async (zip) => {
   }
   catch(error) {
     console.log('whole foods complete fail error: ',error)
+    browser.close()
+
   }
 }
 

@@ -28,6 +28,7 @@ const targetScrape = async () => {
       }
       catch (error) {
         console.log(error)
+        browser.close()
       }
       return infoStringArr
     })
@@ -36,6 +37,7 @@ const targetScrape = async () => {
   }
   catch(error) {
     console.log('target complete fail error: ', error)
+    browser.close()
   }
 }
 
