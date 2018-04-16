@@ -7,6 +7,7 @@ const scrapers = require('../scrapers')
 
 const scraperBots = async () => {
   let zipCodeList = JSON.parse(fs.readFileSync(dbPath, format))
+  console.log('zip list: ',zipCodeList)
   if (zipCodeList.length === 0) process.exit(0)
   let zip = zipCodeList[0]
   return scrapers.wholefoodsScraper.wholefoodsScrape(zip)
