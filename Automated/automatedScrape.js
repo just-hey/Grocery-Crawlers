@@ -11,6 +11,7 @@ const scraperBots = async () => {
   console.log('zip list: ',zipCodeList)
   if (zipCodeList.length === 0) process.exit(0)
   let zip = zipCodeList[0]
+  fs.writeFileSync(dbPath, JSON.stringify(zipCodeList.slice(1)), format)
   return scrapers.wholefoodsScraper.wholefoodsScrape(zip)
     .then(products => {
       console.log('wholeFoods scraped',products.length)
@@ -37,7 +38,9 @@ const scraperBots = async () => {
     })
     .then(response => {
       console.log(response.data)
-      fs.writeFileSync(dbPath, JSON.stringify(zipCodeList.slice(1)), format)
+      if (zipCodeList[0] === zip) {
+        fs.writeFileSync(dbPath, JSON.stringify(zipCodeList.slice(1)), format)
+      }
       console.log(zipCodeList, 'Im done!')
       process.exit(0)
     })
@@ -49,5 +52,3 @@ const scraperBots = async () => {
 }
 
 scraperBots()
-
-// module.exports = scraperBots
