@@ -6,6 +6,11 @@ const dbPath = __dirname + '/zipcodes.json'
 
 function zipFetch() {
   console.log('zip fetch triggered')
+  let checkPoint = JSON.parse(fs.readFileSync(dbPath, format))
+  if (checkPoint.length > 0) {
+    console.log('still have zips to check')
+    return null
+  }
   return axios.get(`${baseURL}users/zips`)
     .then(response => {
       console.log('api response', response.data.zipList)
