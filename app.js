@@ -6,8 +6,6 @@ const bodyParser = require('body-parser')
 const port = process.env.PORT || 8002
 require('dotenv').config()
 
-console.log('firing')
-
 app.use(cors({ exposedHeaders: 'Auth' }))
 app.disable('x-powered-by')
 app.use(morgan('dev'))
