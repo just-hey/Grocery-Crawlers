@@ -7,6 +7,6 @@ router.get('/target/:zip', Controller.target)
 router.get('/wholeFoods/:zip', Controller.wholeFoods)
 router.get('/kroger/:zip', Controller.kroger)
 
-router.get('/botstrigger', BotsTrigger.scraperBots)
+// router.get('/botstrigger', BotsTrigger)
 
 module.exports = router

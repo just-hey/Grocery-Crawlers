@@ -5,7 +5,6 @@ const format = 'utf8'
 const dbPath = __dirname + '/zipcodes.json'
 const scrapers = require('../scrapers')
 
-
 const scraperBots = async () => {
   let zipCodeList = JSON.parse(fs.readFileSync(dbPath, format))
   if (zipCodeList.length === 0) process.exit(0)
@@ -47,6 +46,6 @@ const scraperBots = async () => {
     })
 }
 
-scraperBots()
+// scraperBots()
 
 module.exports = scraperBots
