@@ -5,7 +5,7 @@ class Controller {
   constructor() {}
 
   static target(req, res, next) {
-    console.log('scrape stores firing?')
+    console.log('scrape target firing?')
     return scrapers.targetScraper.targetScrape()
     .then(products => {
       console.log('products? ',products.length)
@@ -15,7 +15,7 @@ class Controller {
   }
 
   static wholeFoods(req, res, next) {
-    console.log('scrape stores firing?');
+    console.log('scrape wholeFoods firing?');
     let { zip } = req.params
     return scrapers.wholefoodsScraper.wholefoodsScrape(zip)
     .then(products => {
@@ -26,7 +26,7 @@ class Controller {
   }
 
   static kroger(req, res, next) {
-    console.log('scrape stores firing?')
+    console.log('scrape kroger firing?')
     let { zip } = req.params
     return scrapers.krogerScraper.krogerScrape(zip)
     .then(products => {
