@@ -8,6 +8,8 @@
     "crawl": "node app.js",
     "dev": "nodemon app.js",
     "start": "node app.js",
+    "zipFetch": "node Automated/automatedZipFetch.js",
+    "scrapeOne": "node Automated/automatedScrape.js",
     "weeklyRun": "node main.js"
   },
   "keywords": [],
@@ -21,6 +23,7 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "fast-levenshtein": "^2.0.6",
+    "fs": "0.0.1-security",
     "morgan": "^1.9.0",
     "nodemon": "^1.17.3",
     "puppeteer": "^1.2.0"
