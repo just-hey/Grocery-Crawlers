@@ -11,7 +11,8 @@ const scraperBots = async () => {
   console.log('zip list: ',zipCodeList)
   if (zipCodeList.length === 0) process.exit(0)
   let zip = zipCodeList[0]
-  fs.writeFileSync(dbPath, JSON.stringify(zipCodeList.slice(1)), format)
+  let newList = zipCodeList.slice(1)
+  fs.writeFileSync(dbPath, JSON.stringify(newList), format)
   return scrapers.wholefoodsScraper.wholefoodsScrape(zip)
     .then(products => {
       console.log('wholeFoods scraped',products.length)
@@ -39,7 +40,7 @@ const scraperBots = async () => {
     .then(response => {
       console.log(response.data)
       if (zipCodeList[0] === zip) {
-        fs.writeFileSync(dbPath, JSON.stringify(zipCodeList.slice(1)), format)
+        fs.writeFileSync(dbPath, JSON.stringify(newList), format)
       }
       console.log(zipCodeList, 'Im done!')
       process.exit(0)
@@ -51,4 +52,17 @@ const scraperBots = async () => {
     })
 }
 
-scraperBots()
+// scraperBots()
+
+// function addZip(req, res, next) {
+//   let { zip } = req.params
+//   let zipCodeList = JSON.parse(fs.readFileSync(dbPath, format))
+//   let message
+//   if (!zipCodeList.includes(zip)) {
+//     let newList = zipCodeList.unshift(zip)
+//     fs.writeFileSync(dbPath, JSON.stringify(newList), format)
+//   } else {
+//
+//   }
+//   return res.status(200).json({ message: 'Zip added to front of line...' })
+// }
