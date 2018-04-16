@@ -8,7 +8,7 @@ const scrapers = require('../scrapers')
 
 const scraperBots = async () => {
   let zipCodeList = JSON.parse(fs.readFileSync(dbPath, format))
-  if (!zipCodeList) return null
+  if (zipCodeList.length === 0) process.exit(0)
   let zip = zipCodeList[0]
   return scrapers.wholefoodsScraper.wholefoodsScrape(zip)
     .then(products => {
@@ -37,13 +37,16 @@ const scraperBots = async () => {
     .then(response => {
       console.log(response.data)
       fs.writeFileSync(dbPath, JSON.stringify(zipCodeList.slice(1)), format)
-      console.log(zipCodeList, 'Im done!');
+      console.log(zipCodeList, 'Im done!')
       process.exit(0)
     })
     .catch(error => {
       console.log(error)
       console.log('failed')
+      process.exit(0)
     })
 }
 
 scraperBots()
+
+module.exports = scraperBots
