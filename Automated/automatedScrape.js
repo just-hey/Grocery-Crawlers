@@ -1,5 +1,5 @@
 const axios = require('axios')
-const baseURL = `http://localhost:3000/`
+const baseURL = `https://salefinder-server.herokuapp.com/`
 const fs = require('fs')
 const format = 'utf8'
 const dbPath = __dirname + '/zipcodes.json'
