@@ -6,7 +6,7 @@ class Controller {
 
   static target(req, res, next) {
     console.log('scrape stores firing?')
-    return scrapers.targetScraper.targetScrape(zip)
+    return scrapers.targetScraper.targetScrape()
     .then(products => {
       console.log('products? ',products.length)
       res.status(200).json({ products })
