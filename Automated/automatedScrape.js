@@ -42,7 +42,7 @@ const scraperBots = async () => {
     })
     .then(response => {
       console.log(response.data)
-      return axios.delete(`${baseURL}/users/zip/${zipId}`)
+      return axios.delete(`${baseURL}users/zip/${zipId}`)
     })
     .then(response => {
       console.log('Im done!', response.data.message)
