@@ -8,11 +8,14 @@ const scrapers = require('../scrapers')
 const scraperBots = async () => {
   console.log('scraperBots triggered')
   let zipId
+  let zip
   return axios.get(`${baseURL}users/zip`)
-    .then(zip => {
-      zipId = zip.id
-      console.log('return thing is zip? !!!! >>>', zip.zip)
-      return scrapers.wholefoodsScraper.wholefoodsScrape(zip.zip)
+    .then(zipReturn => {
+      // console.log(zipReturn)
+      zipId = zipReturn.data.zip.id
+      zip = zipReturn.data.zip.zip
+      console.log('return thing is zip? !!!! >>>', zipReturn.data.zip.zip)
+      return scrapers.wholefoodsScraper.wholefoodsScrape(zip)
     })
     .then(products => {
       console.log('wholeFoods scraped',products.length)
@@ -46,7 +49,7 @@ const scraperBots = async () => {
       process.exit(0)
     })
     .catch(error => {
-      console.log(error)
+      console.log(error.message)
       console.log('failed')
       process.exit(0)
     })
