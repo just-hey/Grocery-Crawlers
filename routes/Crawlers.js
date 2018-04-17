@@ -7,6 +7,6 @@ const BotsTrigger = require('../Automated/automatedScrape')
 // router.get('/wholeFoods/:zip', Controller.wholeFoods)
 // router.get('/kroger/:zip', Controller.kroger)
 
-// router.get('/:zip', BotsTrigger.addZip)
+router.get('/:zip', BotsTrigger.runZip)
 
 module.exports = router
