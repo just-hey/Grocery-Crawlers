@@ -6,14 +6,14 @@ const dbPath = __dirname + '/zipcodes.json'
 const scrapers = require('../scrapers')
 
 const scraperBots = async () => {
-  console.log('scraperBots triggered');
-  let zipCodeList = JSON.parse(fs.readFileSync(dbPath, format))
-  console.log('zip list: ',zipCodeList)
-  if (zipCodeList.length === 0) process.exit(0)
-  let zip = zipCodeList[0]
-  let newList = zipCodeList.slice(1)
-  fs.writeFileSync(dbPath, JSON.stringify(newList), format)
-  return scrapers.wholefoodsScraper.wholefoodsScrape(zip)
+  console.log('scraperBots triggered')
+  let zipId
+  return axios.get(`${baseURL}users/zip`)
+    .then(zip => {
+      zipId = zip.id
+      console.log('return thing is zip? !!!! >>>', zip.zip)
+      return scrapers.wholefoodsScraper.wholefoodsScrape(zip.zip)
+    })
     .then(products => {
       console.log('wholeFoods scraped',products.length)
       let body = { products }
@@ -39,10 +39,10 @@ const scraperBots = async () => {
     })
     .then(response => {
       console.log(response.data)
-      if (zipCodeList[0] === zip) {
-        fs.writeFileSync(dbPath, JSON.stringify(newList), format)
-      }
-      console.log(zipCodeList, 'Im done!')
+      return axios.delete(`${baseURL}/users/zip/${zipId}`)
+    })
+    .then(response => {
+      console.log('Im done!', response.data.message)
       process.exit(0)
     })
     .catch(error => {
