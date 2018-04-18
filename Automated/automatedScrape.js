@@ -12,7 +12,6 @@ const scraperBots = async () => {
   let zip
   return axios.get(`${baseURL}users/zip`)
     .then(zipReturn => {
-      // console.log(zipReturn)
       zipId = zipReturn.data.zip.id
       zip = zipReturn.data.zip.zip
       console.log('return thing is zip? !!!! >>>', zipReturn.data.zip.zip)
@@ -56,9 +55,7 @@ const scraperBots = async () => {
     })
 }
 
-// scraperBots()
-
-
+scraperBots()
 
 function runZip(req, res, next) {
   let { zip } = req.params
