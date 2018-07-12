@@ -17,9 +17,7 @@ const wholefoodsScrape = async (zip) => {
     await page.click('#block-views-80946ef4b139b2cead1c5f9f9cb3d671 > div > div > div.view-content > div.views-row.views-row-1.views-row-odd.views-row-first > div.torn-pod-content > div.storefront-links > a:nth-child(2)')
     await page.waitForSelector('#quicktabs-tabpage-custom_quicktab_sales_coupons-0 > div.torn-pod-content > div > div.view-content')
     let finalInfo = await page.evaluate( async (zip) => {
-      let infoNodes
-      let infoArray
-      let filtered
+      let infoNodes, infoArray, filtered
       try {
         infoNodes = await document.querySelectorAll('#quicktabs-tabpage-custom_quicktab_sales_coupons-0 > div.torn-pod-content > div > div.view-content')
         infoArray = Array.from(infoNodes[0].childNodes)
@@ -31,13 +29,7 @@ const wholefoodsScrape = async (zip) => {
         console.log(error)
         browser.close()
       }
-      let imageStr
-      let firstHalf
-      let secondHalf
-      let image
-      let name
-      let price
-      let finalParsed
+      let imageStr, firstHalf, secondHalf, image, name, price, finalParsed
       try {
         finalParsed = await filtered.map(node => {
           imageStr = node.childNodes[7].childNodes[0].childNodes[0].childNodes[1].innerHTML

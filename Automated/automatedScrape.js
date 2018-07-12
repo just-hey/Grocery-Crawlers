@@ -67,7 +67,6 @@ function runZip(req, res, next) {
     return axios.post(`${baseURL}products/add`, body)
   })
   .then(response => {
-    console.log(response.data)
     return scrapers.targetScraper.targetScrape()
   })
   .then(products => {
